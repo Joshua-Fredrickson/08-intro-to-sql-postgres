@@ -31,13 +31,13 @@ Article.loadAll = rawData => {
 
 Article.fetchAll = callback => {
   $.get('/articles')
-  .then(
-    function(results) {
-      // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
-      Article.loadAll(results);
-      callback();
-    }
-  )
+    .then(
+      function(results) {
+        // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
+        Article.loadAll(results);
+        callback();
+      }
+    )
 };
 
 

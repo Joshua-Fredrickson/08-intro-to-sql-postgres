@@ -22,7 +22,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The code on line 26 corresponds to Item #5 of the diagram.  Article.fetchAll is interacting with server.js.  The UPDATE part of CRUD is being enacted at this time.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -30,7 +30,7 @@ app.get('/new', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  //Line 34 corresponds to Item #3 of the diagram.  $.get('/articles') is interacting with part of code.  We are READing the information from the DB. 
   client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
@@ -42,7 +42,7 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This is part 3 of the diagram.  Article.prototype.insertRecord.  UPDATE part of crud.
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
