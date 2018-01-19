@@ -1,13 +1,19 @@
 'use strict';
 
+
+const pg = require('pg');
+
 const fs = require('fs');
 const express = require('express');
 
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
+
+const conString = 'postgres://jazz-p-zee:6789@HOST:PORT/DBNAME';
+const client = new pg.Client(connectionsString); 
+
 const app = express();
 
-const client = new pg.Client();
 
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
@@ -111,7 +117,6 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
   //We are still querying the database (#3) on the diagram.  The method that the code below is associated with is the Article.truncateTable.  This enacts the DELETE part of the CRUD operations.
   client.query(
     'DELETE FROM articles;'
@@ -125,7 +130,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+// This function is "loading" the database and providing parameters for specific data-types. For example the author get "VARCHAR(255) NOT NULL,"
 loadDB();
 
 app.listen(PORT, () => {
@@ -137,7 +142,7 @@ app.listen(PORT, () => {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This is querying at #3, and "C - creating"; i.e. inserting new data into the database if a condition is meet. The Article.prototype.updateRecord method. 
   client.query('SELECT COUNT(*) FROM articles')
     .then(result => {
     // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
@@ -161,7 +166,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This is at numbers 3 (C-creating the database-table structure) and 4 (loading the data to Artiles after it has been creaated) on the diagram. 
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,

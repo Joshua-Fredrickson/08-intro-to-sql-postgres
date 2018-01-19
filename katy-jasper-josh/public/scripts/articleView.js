@@ -75,7 +75,7 @@ articleView.setTeasers = () => {
 
 articleView.initNewArticlePage = () => {
   $('.tab-content').show();
-  $('#export-field').hide();
+  // $('#export-field').hide(); No longer needed because we are no longer accessing the JSON file directly.
   $('#article-json').on('focus', function(){
     this.select();
   });
@@ -103,7 +103,7 @@ articleView.create = () => {
     hljs.highlightBlock(block);
   });
 
-  $('#export-field').show();
+  // $('#export-field').show(); No longer needed because we are no longer accessing the JSON file directly.
   $('#article-json').val(`${JSON.stringify(article)},`);
 };
 
