@@ -111,7 +111,6 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
   //We are still querying the database (#3) on the diagram.  The method that the code below is associated with is the Article.truncateTable.  This enacts the DELETE part of the CRUD operations.
   client.query(
     'DELETE FROM articles;'
