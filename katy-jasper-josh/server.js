@@ -1,13 +1,19 @@
 'use strict';
 
+
+const pg = require('pg');
+
 const fs = require('fs');
 const express = require('express');
 
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
+
+const conString = 'postgres://jazz-p-zee:6789@HOST:PORT/DBNAME';
+const client = new pg.Client(connectionsString); 
+
 const app = express();
 
-const client = new pg.Client();
 
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
